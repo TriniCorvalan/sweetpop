@@ -1,27 +1,17 @@
-/* SweetPop - General styles (HTML and CSS) */
+/* SweetPop - Tema personalizado sobre Bootstrap */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 body {
   font-family: "Poppins", Arial, sans-serif;
   line-height: 1.5;
   color: #fff;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(135deg, #667eea, #764ba2, #ec4899);
   background-size: 200% 200%;
   animation: moveBackground 12s ease infinite alternate;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 a {
@@ -32,7 +22,6 @@ a:hover {
   color: #fff;
 }
 
-/* Animation 1: background */
 @keyframes moveBackground {
   0% {
     background-position: 0% 50%;
@@ -42,7 +31,6 @@ a:hover {
   }
 }
 
-/* Animation 2: fade in */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -54,7 +42,6 @@ a:hover {
   }
 }
 
-/* Animation 3: hero image */
 @keyframes float {
   0%,
   100% {
@@ -65,7 +52,6 @@ a:hover {
   }
 }
 
-/* Animation 4: button */
 @keyframes pulse {
   0%,
   100% {
@@ -76,269 +62,138 @@ a:hover {
   }
 }
 
-.container {
-  width: 90%;
+main.container {
   max-width: 1100px;
-  margin: 0 auto;
-  padding: 1rem 0 2rem;
+  animation: fadeIn 0.8s ease;
 }
 
 .site-header {
-  background: rgba(102, 126, 234, 0.9);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background: rgba(102, 126, 234, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.site-header .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0;
+.site-header .navbar {
+  --bs-navbar-color: #fff;
+  --bs-navbar-hover-color: #fde047;
+  --bs-navbar-active-color: #fde047;
+  --bs-navbar-brand-color: #fff;
+  --bs-navbar-brand-hover-color: #fde047;
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.5);
+}
+
+.site-header .nav-link {
+  font-weight: 600;
+}
+
+.site-header .nav-link.active {
+  text-decoration: underline;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #fff;
-  text-decoration: none;
   font-weight: 600;
   font-size: 1.25rem;
 }
 
-.logo img {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-}
-
-.nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.nav a:hover {
-  text-decoration: underline;
-}
-
-main {
-  animation: fadeIn 0.8s ease;
-}
-
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-
-h2 {
-  font-size: 1.3rem;
-  margin: 1.5rem 0 0.75rem;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-.breadcrumb {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.breadcrumb a {
-  color: #fde047;
-}
-
-.intro {
-  margin-bottom: 1.5rem;
-}
-
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.hero-text {
-  flex: 1;
-  min-width: 260px;
-}
-
-.hero-image {
-  flex: 1;
-  min-width: 260px;
-  text-align: center;
-}
-
 .hero-image img {
-  margin: 0 auto;
   animation: float 3s ease-in-out infinite;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  margin: 0.25rem 0.5rem 0.25rem 0;
+.btn-sweetpop {
   background: #fde047;
   color: #333;
-  text-decoration: none;
-  border-radius: 8px;
+  border: none;
   font-weight: 600;
   animation: pulse 2s ease-in-out infinite;
 }
 
-.btn:hover {
+.btn-sweetpop:hover,
+.btn-sweetpop:focus {
   background: #fbbf24;
+  color: #333;
 }
 
-.box-info {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 1rem;
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+  color: #333;
 }
 
-.box-info ul {
-  margin-left: 1.25rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  padding: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.35rem;
-}
-
-.card p {
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.card a {
-  font-weight: 600;
-}
-
-.page-links {
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  font-size: 0.95rem;
-}
-
-.page-links a {
-  margin-right: 0.75rem;
-}
-
-.site-footer {
-  background: rgba(0, 0, 0, 0.25);
-  text-align: center;
-  padding: 1.25rem;
-  margin-top: 2rem;
+.breadcrumb {
+  --bs-breadcrumb-divider-color: rgba(255, 255, 255, 0.7);
+  --bs-breadcrumb-item-active-color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
 }
 
-.site-footer ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
+.breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.7);
 }
 
-.site-footer a {
+.breadcrumb-item a {
   color: #fde047;
   text-decoration: none;
 }
 
-/* Media queries */
-@media (max-width: 1024px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.breadcrumb-item a:hover {
+  color: #fff;
 }
 
-@media (max-width: 768px) {
-  .grid-3,
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
+.alert-sweetpop {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
 
-  .site-header .container {
-    flex-direction: column;
-    text-align: center;
-  }
+.sweetpop-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  transition: transform 0.3s ease;
+}
 
-  .nav ul {
-    justify-content: center;
+.sweetpop-card:hover {
+  transform: scale(1.02);
+}
+
+.sweetpop-card .card-img-top {
+  height: 180px;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sweetpop-card .card-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sweetpop-card .card-link {
+  color: #fde047;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sweetpop-card .card-link:hover {
+  color: #fff;
+}
+
+.site-footer {
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 0.9rem;
+}
+
+.site-footer .nav-link {
+  color: #fde047;
+}
+
+.site-footer .nav-link:hover {
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  .site-header .navbar-collapse {
+    margin-top: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .grid-4 {
-    grid-template-columns: 1fr;
-  }
-
-  .btn {
-    display: block;
-    text-align: center;
-    margin-bottom: 0.5rem;
+  .btn-sweetpop {
+    width: 100%;
   }
 }
