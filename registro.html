@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro - SweetPop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
+      <div class="container">
+        <a class="navbar-brand logo d-flex align-items-center gap-2" href="index.html">
+          <img src="img/logo.png" alt="Logo SweetPop" width="40" height="40" class="rounded">
+          SweetPop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="cajas.html">Cajas</a></li>
+            <li class="nav-item"><a class="nav-link" href="dulces.html">Dulces</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="registro.html">Registro</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Registro</li>
+      </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <section class="sweetpop-form-card p-4 p-md-5">
+          <h1 class="h2 mb-2">Crear cuenta</h1>
+          <p class="mb-4">Completa el formulario para registrarte y poder iniciar sesión más adelante.</p>
+
+          <form id="formRegistro" novalidate>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="name" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="name" name="name" required autocomplete="name" placeholder="Ej: María Paola">
+                <div class="invalid-feedback">Ingresa tu nombre.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="lastname1" class="form-label">Primer apellido</label>
+                <input type="text" class="form-control" id="lastname1" name="lastname1" required autocomplete="lastname" placeholder="Ej: González">
+                <div class="invalid-feedback">Ingresa tu primer apellido.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="lastname2" class="form-label">Segundo apellido</label>
+                <input type="text" class="form-control" id="lastname2" name="lastname2" required autocomplete="lastname" placeholder="Ej: Pérez">
+                <div class="invalid-feedback">Ingresa tu segundo apellido.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="username" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="username" name="username" required autocomplete="username" minlength="3" maxlength="30" pattern="[a-zA-Z0-9._-]+" placeholder="Ej: mariagp">
+                <div class="form-text">Solo letras, números, puntos, guiones y guiones bajos.</div>
+                <div class="invalid-feedback">El usuario debe tener entre 6 y 20 caracteres válidos.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" required autocomplete="email" placeholder="Ej: maria@correo.com">
+                <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required autocomplete="new-password" minlength="6" placeholder="Mínimo 6 caracteres">
+                <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="passwordConfirm" class="form-label">Confirmar contraseña</label>
+                <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required autocomplete="new-password" minlength="6" placeholder="Confirma tu contraseña">
+                <div class="invalid-feedback">Las contraseñas deben coincidir.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label for="birthdate" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+                <div class="invalid-feedback">Selecciona tu fecha de nacimiento.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Dirección de despacho</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required placeholder="Calle, número, comuna, región"></textarea>
+                <div class="invalid-feedback">Ingresa tu dirección de despacho.</div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <button type="submit" class="btn btn-sweetpop">Registrarme</button>
+              <button type="reset" class="btn btn-outline-light">Limpiar</button>
+              <a href="index.html" class="btn btn-outline-light">Cancelar</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer py-4 mt-auto">
+    <div class="container text-center">
+      <p class="mb-2">SweetPop - Sorpresas dulces</p>
+      <ul class="nav justify-content-center flex-wrap gap-2">
+        <li class="nav-item"><a class="nav-link px-2" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="cajas.html">Cajas</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="dulces.html">Dulces</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="registro.html">Registro</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

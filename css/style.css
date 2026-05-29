@@ -186,6 +186,34 @@ main.container {
   color: #fff;
 }
 
+.sweetpop-form-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  color: #fff;
+}
+
+.sweetpop-form-card .form-label {
+  font-weight: 600;
+}
+
+.sweetpop-form-card .form-control {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #333;
+}
+
+.sweetpop-form-card .form-control:focus {
+  background: #fff;
+  border-color: #fde047;
+  box-shadow: 0 0 0 0.2rem rgba(253, 224, 71, 0.35);
+  color: #333;
+}
+
+.sweetpop-form-card .form-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 @media (max-width: 991px) {
   .site-header .navbar-collapse {
     margin-top: 0.75rem;
