@@ -1,0 +1,39 @@
+/* Paleta SweetPop — variables reutilizables en todo el sitio */
+
+:root {
+  /* Colores de marca */
+  --sp-blue: #667eea;
+  --sp-purple: #764ba2;
+  --sp-pink: #ec4899;
+  --sp-yellow: #fde047;
+  --sp-yellow-dark: #fbbf24;
+  --sp-white: #fff;
+  --sp-text-dark: #333;
+
+  /* Valores RGB para transparencias */
+  --sp-blue-rgb: 102, 126, 234;
+  --sp-white-rgb: 255, 255, 255;
+  --sp-yellow-rgb: 253, 224, 71;
+  --sp-black-rgb: 0, 0, 0;
+
+  /* Tokens de diseño */
+  --sp-gradient: linear-gradient(135deg, var(--sp-blue), var(--sp-purple), var(--sp-pink));
+  --sp-header-bg: rgba(var(--sp-blue-rgb), 0.95);
+  --sp-footer-bg: rgba(var(--sp-black-rgb), 0.25);
+  --sp-shadow: rgba(var(--sp-black-rgb), 0.2);
+  --sp-surface: rgba(var(--sp-white-rgb), 0.15);
+  --sp-surface-border: rgba(var(--sp-white-rgb), 0.3);
+  --sp-surface-strong: rgba(var(--sp-white-rgb), 0.2);
+  --sp-surface-input: rgba(var(--sp-white-rgb), 0.9);
+  --sp-surface-input-border: rgba(var(--sp-white-rgb), 0.4);
+  --sp-text-muted: rgba(var(--sp-white-rgb), 0.85);
+  --sp-text-soft: rgba(var(--sp-white-rgb), 0.9);
+  --sp-text-divider: rgba(var(--sp-white-rgb), 0.7);
+  --sp-focus-ring: rgba(var(--sp-yellow-rgb), 0.35);
+
+  /* Bootstrap: danger como yellow-300 (#ffda6a) */
+  --bs-danger: #ffda6a;
+  --bs-danger-rgb: 255, 218, 106;
+  --bs-form-invalid-color: var(--bs-danger);
+  --bs-form-invalid-border-color: var(--bs-danger);
+}
