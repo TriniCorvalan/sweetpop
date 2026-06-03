@@ -1,5 +1,15 @@
 /* SweetPop - Catálogo de dulces con asignación por pared de caja */
 
+/* Escapa texto para insertarlo de forma segura en HTML. */
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 /* Muestra un mensaje temporal en #catalogAlert. */
 function showCatalogAlert(type, message) {
   const alertEl = document.getElementById("catalogAlert");
@@ -17,6 +27,51 @@ function clearCatalogAlert() {
   }
 }
 
+/* Construye el HTML de una tarjeta de producto desde el catálogo en storage. */
+function buildProductCard(candy) {
+  const sizeLabel = getSizeLabel(candy.size);
+  const discountText =
+    candy.discountLabel === "no disponible"
+      ? "Descuento: no disponible"
+      : `Descuento: ${candy.discountLabel}`;
+
+  return `
+    <div class="col">
+      <article class="card h-100 sweetpop-card" data-product-id="${candy.id}">
+        <img src="${escapeHtml(candy.image)}" class="card-img-top" alt="${escapeHtml(candy.name)}">
+        <div class="card-body">
+          <h3 class="card-title h5">${escapeHtml(candy.name)}</h3>
+          <p class="card-text">${escapeHtml(candy.description)}</p>
+          <p class="card-text">Tamaño ${escapeHtml(sizeLabel)}. ${formatPrice(candy.price)}</p>
+          <p class="card-text">${escapeHtml(discountText)}</p>
+          <div class="catalog-product-actions mt-2"></div>
+        </div>
+      </article>
+    </div>
+  `;
+}
+
+/* Renderiza las tarjetas de la categoría indicada en #categoryProducts. */
+function renderCategoryProducts(category) {
+  const container = document.getElementById("categoryProducts");
+  if (!container) {
+    return;
+  }
+
+  const candies = getCandiesByCategory(category);
+
+  if (candies.length === 0) {
+    container.innerHTML = `
+      <div class="col-12">
+        <p class="text-center py-4">No hay productos en esta categoría.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = candies.map(buildProductCard).join("");
+}
+
 /* Construye el HTML de estado y botón para una tarjeta de producto. */
 function buildProductActions(productId) {
   const candy = getCandyById(productId);
@@ -25,12 +80,11 @@ function buildProductActions(productId) {
   }
 
   const draft = getBoxDraft();
-  const stock = getStock(productId);
   const available = getAvailableStockForDraft(productId);
+  const unitsPerWall = getWallQuantityBySize(candy.size);
 
   if (!draft) {
     return `
-      <p class="catalog-meta mb-2">Stock: ${stock}</p>
       <button type="button" class="btn btn-outline-light btn-sm" disabled>Elegir caja primero</button>
     `;
   }
@@ -41,24 +95,24 @@ function buildProductActions(productId) {
   const nextLabel = nextWall ? nextWall.wallIndex : draft.wallsCount;
 
   let statusClass = "catalog-status-ok";
-  let statusText = `Disponible: ${available} · Tamaño ${candy.size}`;
+  let statusText = `Tamaño ${getSizeLabel(candy.size)} · ${unitsPerWall} u. por pared`;
 
   if (!compatible) {
     statusClass = "catalog-status-blocked";
-    statusText = `No cabe en ${draft.boxName} (tamaño ${candy.size})`;
-  } else if (available < 1) {
+    statusText = `No cabe en ${draft.boxName} (tamaño ${getSizeLabel(candy.size)})`;
+  } else if (available < unitsPerWall) {
     statusClass = "catalog-status-blocked";
-    statusText = "Sin stock para asignar";
+    statusText = "No disponible en este momento";
   } else if (complete) {
     statusClass = "catalog-status-info";
     statusText = "Caja completa. Agrega al carrito arriba.";
   }
 
   const disabled =
-    !compatible || available < 1 || complete ? "disabled" : "";
+    !compatible || available < unitsPerWall || complete ? "disabled" : "";
   const buttonLabel = complete
     ? "Caja completa"
-    : `Asignar a pared ${nextLabel}`;
+    : `Asignar a pared ${nextLabel} (${unitsPerWall} u.)`;
 
   return `
     <p class="catalog-meta mb-1 ${statusClass}">${statusText}</p>
@@ -109,6 +163,8 @@ function handleAssignClick(event) {
 
 /* Inicializa la página de categoría de dulces. */
 function initCatalogPage() {
+  const category = document.body.dataset.category;
+  renderCategoryProducts(category);
   refreshCatalogCards();
 
   document.addEventListener("click", (event) => {

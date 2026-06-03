@@ -27,18 +27,23 @@ function getNextEmptyWall(draft) {
   return currentDraft.walls.find((wall) => !wall.productId) || null;
 }
 
-/* Cuenta cuántas veces un dulce ya está asignado en el borrador actual. */
-function countProductInDraft(productId, draft) {
+/* Cuenta cuántas unidades de un dulce ya están reservadas en el borrador. */
+function getQuantityUsedInDraft(productId, draft) {
   const currentDraft = draft || getBoxDraft();
   if (!currentDraft) {
     return 0;
   }
-  return currentDraft.walls.filter((wall) => wall.productId === productId).length;
+  return currentDraft.walls
+    .filter((wall) => wall.productId === productId)
+    .reduce((sum, wall) => {
+      const quantity = wall.quantity || getWallQuantityBySize(wall.size);
+      return sum + quantity;
+    }, 0);
 }
 
-/* Stock disponible para asignar considerando lo ya usado en el borrador. */
+/* Stock disponible para asignar considerando unidades ya reservadas en el borrador. */
 function getAvailableStockForDraft(productId) {
-  return getStock(productId) - countProductInDraft(productId);
+  return getStock(productId) - getQuantityUsedInDraft(productId);
 }
 
 /* Inicia o reinicia el borrador de caja en sessionStorage. */
@@ -79,6 +84,7 @@ function startBoxDraft(boxId, forceReplace) {
       productName: null,
       price: null,
       size: null,
+      quantity: null,
     });
   }
 
@@ -131,14 +137,16 @@ function assignCandyToWall(productId) {
   if (!isCandyCompatibleWithBox(candy.size, draft.boxId)) {
     return {
       success: false,
-      message: `${candy.name} (tamaño ${candy.size}) no cabe en ${draft.boxName}.`,
+      message: `${candy.name} (tamaño ${getSizeLabel(candy.size)}) no cabe en ${draft.boxName}.`,
     };
   }
 
-  if (getAvailableStockForDraft(productId) < 1) {
+  const requiredQuantity = getWallQuantityBySize(candy.size);
+
+  if (getAvailableStockForDraft(productId) < requiredQuantity) {
     return {
       success: false,
-      message: `No hay stock suficiente de ${candy.name}.`,
+      message: `${candy.name} no está disponible en este momento.`,
     };
   }
 
@@ -147,13 +155,14 @@ function assignCandyToWall(productId) {
   nextWall.productName = candy.name;
   nextWall.price = candy.price;
   nextWall.size = candy.size;
+  nextWall.quantity = requiredQuantity;
 
   saveBoxDraft(draft);
 
   const filled = getFilledWallsCount(draft);
   return {
     success: true,
-    message: `${candy.name} asignado a la pared ${nextWall.wallIndex} de ${draft.wallsCount}.`,
+    message: `${candy.name} asignado a la pared ${nextWall.wallIndex} (${requiredQuantity} unidades).`,
     filled,
     complete: isBoxDraftComplete(draft),
   };
@@ -187,7 +196,8 @@ function addCompletedBoxToCart() {
 
   const stockNeeded = {};
   draft.walls.forEach((wall) => {
-    stockNeeded[wall.productId] = (stockNeeded[wall.productId] || 0) + 1;
+    const quantity = wall.quantity || getWallQuantityBySize(wall.size);
+    stockNeeded[wall.productId] = (stockNeeded[wall.productId] || 0) + quantity;
   });
 
   for (const [productId, quantity] of Object.entries(stockNeeded)) {
@@ -195,12 +205,15 @@ function addCompletedBoxToCart() {
       const candy = getCandyById(productId);
       return {
         success: false,
-        message: `Stock insuficiente de ${candy ? candy.name : productId}.`,
+        message: `${candy ? candy.name : "Un dulce"} no está disponible en la cantidad necesaria.`,
       };
     }
   }
 
-  const candiesSubtotal = draft.walls.reduce((sum, wall) => sum + wall.price, 0);
+  const candiesSubtotal = draft.walls.reduce((sum, wall) => {
+    const quantity = wall.quantity || getWallQuantityBySize(wall.size);
+    return sum + wall.price * quantity;
+  }, 0);
   const total = Math.round((draft.boxPrice + candiesSubtotal) * (1 - draft.discount));
 
   const cart = getCart();
@@ -252,10 +265,11 @@ function renderBoxProgress(container) {
   const progressPercent = Math.round((filled / draft.wallsCount) * 100);
   const assignedList = draft.walls
     .filter((wall) => wall.productId)
-    .map(
-      (wall) =>
-        `<li>Pared ${wall.wallIndex}: ${wall.productName} (${formatPrice(wall.price)})</li>`
-    )
+    .map((wall) => {
+      const quantity = wall.quantity || getWallQuantityBySize(wall.size);
+      const lineTotal = wall.price * quantity;
+      return `<li>Pared ${wall.wallIndex}: ${wall.productName} × ${quantity} (${formatPrice(lineTotal)})</li>`;
+    })
     .join("");
 
   const addToCartButton = complete

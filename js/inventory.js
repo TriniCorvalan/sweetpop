@@ -44,7 +44,7 @@ function buildInventoryRow(item) {
     <tr class="${rowClass}">
       <td>${item.name}</td>
       <td>${getCategoryLabel(item.category)}</td>
-      <td>${item.size}</td>
+      <td>${getSizeLabel(item.size)}</td>
       <td>${formatPrice(item.price)}</td>
       <td>${item.stock}</td>
       <td><span class="badge ${status.badgeClass}">${status.label}</span></td>

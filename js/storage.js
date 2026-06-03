@@ -46,106 +46,152 @@ const CANDY_CATALOG = [
     id: "gom-gummy-bears",
     name: "Gummy Bears",
     category: "gomitas",
-    size: "pequeño",
+    size: "small",
     price: 2990,
     image: "img/categorias/gomitas/dulce-gummy-bears.jpg",
+    description: "Tiernos ositos de gomita de colores.",
+    discountLabel: "10%",
   },
   {
     id: "gom-jelly-beans",
     name: "Jelly Beans",
     category: "gomitas",
-    size: "pequeño",
+    size: "small",
     price: 2790,
     image: "img/categorias/gomitas/dulce-jelly-beans.jpg",
+    description: "Deliciosas gomitas en forma de semillas.",
+    discountLabel: "no disponible",
   },
   {
     id: "gom-worms",
     name: "Worms de azúcar",
     category: "gomitas",
-    size: "pequeño",
+    size: "small",
     price: 2590,
     image: "img/categorias/gomitas/dulce-worms.jpg",
+    description: "Entretenidas gomitas en forma de serpientes.",
+    discountLabel: "15%",
   },
   {
     id: "cho-kisses",
     name: "Chocolate Kisses",
     category: "chocolate",
-    size: "pequeño",
+    size: "small",
     price: 3490,
     image: "img/categorias/chocolate/dulce-choco-kisses.jpg",
+    description: "Románticos besitos de chocolate.",
+    discountLabel: "no disponible",
   },
   {
     id: "cho-pb-cup",
     name: "Peanut Butter Cup",
     category: "chocolate",
-    size: "medio",
+    size: "medium",
     price: 3290,
     image: "img/categorias/chocolate/dulce-peanut-cup.jpg",
+    description: "Delicioso chocolate con mantequilla de maní.",
+    discountLabel: "10%",
   },
   {
     id: "cho-trufa",
     name: "Trufa Gourmet",
     category: "chocolate",
-    size: "grande",
+    size: "large",
     price: 5990,
     image: "img/categorias/chocolate/dulce-trufa.jpg",
+    description: "Tradicionales trufas de chocolate.",
+    discountLabel: "20%",
   },
   {
     id: "car-lollipop",
     name: "Lollipop",
     category: "caramelos",
-    size: "medio",
+    size: "medium",
     price: 1990,
     image: "img/categorias/caramelos/dulce-lollipop.jpg",
+    description: "Clásicos caramelos en forma de paleta.",
+    discountLabel: "5%",
   },
   {
     id: "car-chew",
     name: "Caramel Chew",
     category: "caramelos",
-    size: "medio",
+    size: "medium",
     price: 2490,
     image: "img/categorias/caramelos/dulce-caramel.jpg",
+    description: "Deliciosos caramelos masticables.",
+    discountLabel: "no disponible",
   },
   {
     id: "car-fruit-drop",
     name: "Fruit Drop",
     category: "caramelos",
-    size: "grande",
+    size: "large",
     price: 4490,
     image: "img/categorias/caramelos/dulce-fruit-drop.jpg",
+    description: "Caramelos de fruta.",
+    discountLabel: "10%",
   },
   {
     id: "bar-candy",
     name: "Candy Bar",
     category: "barritas",
-    size: "grande",
+    size: "large",
     price: 4990,
     image: "img/categorias/barritas/dulce-candy-bar.jpg",
+    description: "Barrita de chocolate con chispas de chocolate.",
+    discountLabel: "15%",
   },
   {
     id: "bar-nougat",
     name: "Nougat Bar",
     category: "barritas",
-    size: "grande",
+    size: "large",
     price: 4290,
     image: "img/categorias/barritas/dulce-nougat.jpg",
+    description: "Barrita de chocolate con nuez.",
+    discountLabel: "10%",
   },
   {
     id: "bar-crispy",
     name: "Crispy Bar",
     category: "barritas",
-    size: "grande",
+    size: "large",
     price: 3890,
     image: "img/categorias/barritas/dulce-crispy.jpg",
+    description: "Barrita de chocolate con chispas de chocolate.",
+    discountLabel: "no disponible",
   },
 ];
 
-/* pequeño y medio caben en todas; grande no cabe en caja simple */
+/* small y medium caben en todas; large no cabe en caja simple */
 const SIZE_COMPATIBILITY = {
-  pequeño: ["box-simple", "box-double", "box-triple"],
-  medio: ["box-simple", "box-double", "box-triple"],
-  grande: ["box-double", "box-triple"],
+  small: ["box-simple", "box-double", "box-triple"],
+  medium: ["box-simple", "box-double", "box-triple"],
+  large: ["box-double", "box-triple"],
 };
+
+/* Unidades de dulce que ocupa cada pared según el tamaño del producto. */
+const WALL_QUANTITY_BY_SIZE = {
+  small: 10,
+  medium: 7,
+  large: 4,
+};
+
+/* Retorna cuántas unidades de un dulce se asignan al cubrir una pared. */
+function getWallQuantityBySize(size) {
+  return WALL_QUANTITY_BY_SIZE[size] || 4;
+}
+
+/* Etiqueta en español del tamaño para mostrar en la UI (datos internos en inglés). */
+function getSizeLabel(size) {
+  const labels = {
+    small: "pequeño",
+    medium: "medio",
+    large: "grande",
+  };
+  return labels[size] || size;
+}
 
 /* Lee y parsea JSON desde localStorage o sessionStorage.
    Retorna fallback si la clave no existe o el JSON es inválido. */
@@ -175,6 +221,7 @@ function generateId(prefix) {
 function initAppData() {
   ensureAdminUser();
   ensureInventory();
+  syncInventorySizesFromCatalog();
   ensureCart();
 }
 
@@ -218,6 +265,27 @@ function ensureInventory() {
   }));
 
   saveInventory(inventory);
+}
+
+/* Actualiza tamaños del inventario guardado si cambió el catálogo base. */
+function syncInventorySizesFromCatalog() {
+  const inventory = getInventory();
+  if (inventory.length === 0) {
+    return;
+  }
+
+  let changed = false;
+  inventory.forEach((item) => {
+    const candy = getCandyById(item.productId);
+    if (candy && item.size !== candy.size) {
+      item.size = candy.size;
+      changed = true;
+    }
+  });
+
+  if (changed) {
+    saveInventory(inventory);
+  }
 }
 
 /* Asegura que exista un carrito vacío en localStorage. */
@@ -340,6 +408,11 @@ function getBoxById(boxId) {
 /* Busca un dulce del catálogo por id. Retorna null si no existe. */
 function getCandyById(productId) {
   return CANDY_CATALOG.find((candy) => candy.id === productId) || null;
+}
+
+/* Obtiene los dulces de una categoría del catálogo base. */
+function getCandiesByCategory(category) {
+  return CANDY_CATALOG.filter((candy) => candy.category === category);
 }
 
 /* Indica si un dulce del tamaño dado cabe en la caja seleccionada. */
