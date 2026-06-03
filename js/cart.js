@@ -148,7 +148,7 @@ function buildCartItemCard(item) {
 
   return `
     <article class="cart-item-card mb-4" data-cart-item-id="${item.cartItemId}">
-      <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+      <div class="cart-item-header d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
         <h2 class="h5 mb-0">${item.boxName}</h2>
         <button type="button" class="btn btn-outline-light btn-sm"
           data-remove-cart-item="${item.cartItemId}">Eliminar</button>
@@ -184,9 +184,9 @@ function renderCartPage() {
 
   if (cart.length === 0) {
     container.innerHTML = `
-      <p class="text-center py-4 mb-0">No tienes cajas en el carrito.</p>
-      <div class="text-center">
-        <a href="boxes.html" class="btn btn-sweetpop">Personalizar una caja</a>
+      <p class="text-center py-4 mb-3">No tienes cajas en el carrito.</p>
+      <div class="cart-empty-actions text-center">
+        <a href="boxes.html" class="btn btn-sweetpop w-100">Personalizar una caja</a>
       </div>
     `;
     return;
@@ -196,7 +196,7 @@ function renderCartPage() {
 
   container.innerHTML = `
     ${cart.map(buildCartItemCard).join("")}
-    <div class="cart-grand-total d-flex flex-wrap justify-content-between align-items-center gap-3 pt-3 border-top border-light border-opacity-25">
+    <div class="cart-grand-total cart-pay-bar d-flex flex-wrap justify-content-between align-items-center gap-3 pt-3 border-top border-light border-opacity-25">
       <p class="h5 mb-0">Total a pagar: ${formatPrice(grandTotal)}</p>
       <button type="button" class="btn btn-sweetpop" id="payCartBtn">Pagar</button>
     </div>

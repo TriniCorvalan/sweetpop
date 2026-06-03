@@ -126,6 +126,16 @@ function refreshCatalogCards() {
   document.querySelectorAll("[data-product-id]").forEach((card) => {
     const productId = card.getAttribute("data-product-id");
     const actionsEl = card.querySelector(".catalog-product-actions");
+    const draft = getBoxDraft();
+    const candy = getCandyById(productId);
+    const blocked =
+      draft &&
+      candy &&
+      (!isCandyCompatibleWithBox(candy.size, draft.boxId) ||
+        getAvailableStockForDraft(productId) < getWallQuantityBySize(candy.size));
+
+    card.classList.toggle("catalog-card-blocked", Boolean(blocked));
+
     if (actionsEl) {
       actionsEl.innerHTML = buildProductActions(productId);
     }
