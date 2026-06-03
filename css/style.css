@@ -298,6 +298,31 @@ main.container {
   color: var(--sp-yellow);
 }
 
+.cart-item-card {
+  background: var(--sp-surface-strong);
+  border: 1px solid var(--sp-surface-border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+
+.cart-item-walls {
+  color: var(--sp-text-soft);
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.cart-item-summary dt {
+  color: var(--sp-text-muted);
+}
+
+.cart-item-summary dd {
+  color: var(--sp-text-soft);
+}
+
+.cart-grand-total {
+  color: var(--sp-white);
+}
+
 @media (max-width: 991px) {
   .site-header .navbar-collapse {
     margin-top: 0.75rem;
