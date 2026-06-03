@@ -94,7 +94,7 @@ function requireRole(allowedRoles, redirectTo) {
 
   if (!allowedRoles.includes(session.role)) {
     if (session.role === "admin") {
-      window.location.href = "inventario.html";
+      window.location.href = "inventory.html";
     } else {
       window.location.href = "index.html";
     }
@@ -114,7 +114,7 @@ function requireGuest(redirectTo) {
   }
 
   if (session.role === "admin") {
-    window.location.href = redirectTo || "inventario.html";
+    window.location.href = redirectTo || "inventory.html";
   } else {
     window.location.href = redirectTo || "index.html";
   }

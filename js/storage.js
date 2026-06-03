@@ -356,4 +356,5 @@ function formatPrice(amount) {
   return `$${Number(amount).toLocaleString("es-CL")}`;
 }
 
+/* Ejecuta el sembrado inicial al incluir este script en cualquier página. */
 initAppData();

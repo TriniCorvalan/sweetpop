@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gomitas - SweetPop</title>
+  <title>Barritas - SweetPop</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,12 +19,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="cajas.html">Cajas</a></li>
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="dulces.html">Dulces</a></li>
-            <li class="nav-item"><a class="nav-link" href="registro.html">Registro</a></li>
-          </ul>
+          <ul class="navbar-nav ms-auto" id="mainNavItems"></ul>
         </div>
       </div>
     </nav>
@@ -34,44 +29,44 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="dulces.html">Dulces</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Gomitas</li>
+        <li class="breadcrumb-item"><a href="candies.html">Dulces</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Barritas</li>
       </ol>
     </nav>
 
-    <h1 class="h2 mb-4">Gomitas</h1>
+    <h1 class="h2 mb-4">Barritas</h1>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
       <div class="col">
         <article class="card h-100 sweetpop-card">
-          <img src="img/categorias/gomitas/dulce-gummy-bears.jpg" class="card-img-top" alt="Gummy Bears">
+          <img src="img/categorias/barritas/dulce-candy-bar.jpg" class="card-img-top" alt="Candy Bar">
           <div class="card-body">
-            <h3 class="card-title h5">Gummy Bears</h3>
-            <p class="card-text">Tiernos ositos de gomita de colores.</p>
-            <p class="card-text">Tamaño pequeño. $2.990</p>
+            <h3 class="card-title h5">Candy Bar</h3>
+            <p class="card-text">Barrita de chocolate con chispas de chocolate.</p>
+            <p class="card-text">Tamaño grande. $4.990</p>
+            <p class="card-text">Descuento: 15%</p>
+          </div>
+        </article>
+      </div>
+      <div class="col">
+        <article class="card h-100 sweetpop-card">
+          <img src="img/categorias/barritas/dulce-nougat.jpg" class="card-img-top" alt="Nougat Bar">
+          <div class="card-body">
+            <h3 class="card-title h5">Nougat Bar</h3>
+            <p class="card-text">Barrita de chocolate con nuez.</p>
+            <p class="card-text">Tamaño grande. $4.290</p>
             <p class="card-text">Descuento: 10%</p>
           </div>
         </article>
       </div>
       <div class="col">
         <article class="card h-100 sweetpop-card">
-          <img src="img/categorias/gomitas/dulce-jelly-beans.jpg" class="card-img-top" alt="Jelly Beans">
+          <img src="img/categorias/barritas/dulce-crispy.jpg" class="card-img-top" alt="Crispy Bar">
           <div class="card-body">
-            <h3 class="card-title h5">Jelly Beans</h3>
-            <p class="card-text">Deliciosas gomitas en forma de semillas.</p>
-            <p class="card-text">Tamaño pequeño. $2.790</p>
+            <h3 class="card-title h5">Crispy Bar</h3>
+            <p class="card-text">Barrita de chocolate con chispas de chocolate.</p>
+            <p class="card-text">Tamaño grande. $3.890</p>
             <p class="card-text">Descuento: no disponible</p>
-          </div>
-        </article>
-      </div>
-      <div class="col">
-        <article class="card h-100 sweetpop-card">
-          <img src="img/categorias/gomitas/dulce-worms.jpg" class="card-img-top" alt="Worms de azúcar">
-          <div class="card-body">
-            <h3 class="card-title h5">Worms de azúcar</h3>
-            <p class="card-text">Entretenidas gomitas en forma de serpientes.</p>
-            <p class="card-text">Tamaño pequeño. $2.590</p>
-            <p class="card-text">Descuento: 15%</p>
           </div>
         </article>
       </div>
@@ -79,8 +74,8 @@
 
     <nav class="page-links d-flex flex-wrap gap-2 pt-3 border-top border-light border-opacity-25" aria-label="Enlaces del sitio">
       <a href="index.html" class="btn btn-outline-light btn-sm">Volver al inicio</a>
-      <a href="dulces.html" class="btn btn-outline-light btn-sm">Volver a dulces</a>
-      <a href="categoria-chocolate.html" class="btn btn-outline-light btn-sm">Chocolate</a>
+      <a href="candies.html" class="btn btn-outline-light btn-sm">Volver a dulces</a>
+      <a href="category-gummies.html" class="btn btn-outline-light btn-sm">Gomitas</a>
     </nav>
   </main>
 
@@ -89,10 +84,13 @@
       <p class="mb-2">SweetPop - Proyecto Full Stack II</p>
       <ul class="nav justify-content-center flex-wrap gap-2">
         <li class="nav-item"><a class="nav-link px-2" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link px-2" href="dulces.html">Dulces</a></li>
+        <li class="nav-item"><a class="nav-link px-2" href="candies.html">Dulces</a></li>
       </ul>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav.js"></script>
 </body>
 </html>
