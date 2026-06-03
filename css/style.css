@@ -215,6 +215,46 @@ main.container {
   color: var(--sp-text-muted);
 }
 
+.sweetpop-admin-card {
+  background: var(--sp-surface);
+  border: 1px solid var(--sp-surface-border);
+  border-radius: 0.5rem;
+  color: var(--sp-white);
+}
+
+.sweetpop-table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--sp-white);
+  --bs-table-border-color: var(--sp-surface-border);
+  margin-bottom: 0;
+}
+
+.sweetpop-table thead th {
+  color: var(--sp-yellow);
+  font-weight: 600;
+  border-bottom-width: 2px;
+}
+
+.sweetpop-table tbody td {
+  color: var(--sp-text-soft);
+}
+
+.sweetpop-table .table-row-out-of-stock {
+  opacity: 0.75;
+}
+
+.badge-stock-available {
+  background: rgba(25, 135, 84, 0.25);
+  color: #75d99a;
+  border: 1px solid rgba(25, 135, 84, 0.5);
+}
+
+.badge-stock-empty {
+  background: rgba(220, 53, 69, 0.2);
+  color: #ff8a96;
+  border: 1px solid rgba(220, 53, 69, 0.45);
+}
+
 @media (max-width: 991px) {
   .site-header .navbar-collapse {
     margin-top: 0.75rem;
