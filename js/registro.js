@@ -170,6 +170,9 @@ function validatePasswords(passwordInput, passwordConfirmInput) {
   if (passwordInput.value.length < 6) {
     errors.password.push("La contraseña debe tener al menos 6 caracteres.");
   }
+  if (passwordInput.value.length > 18) {
+    errors.password.push("La contraseña debe tener menos de 18 caracteres.");
+  }
   if (!passwordInput.value.match(/[0-9]/)) {
     errors.password.push("La contraseña debe incluir un número.");
   }
