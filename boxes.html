@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="boxes">
   <header class="site-header">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
       <div class="container">
@@ -55,8 +55,9 @@
             <h3 class="card-title h5">Caja simple</h3>
             <p class="card-text">1 nivel de anidación. 4 paredes.</p>
             <p class="card-text">Ejemplo de pared: 18 x 12 cm.</p>
+            <p class="card-text">Precio base: $8.990</p>
             <p class="card-text">Descuento: 10%</p>
-            <a href="candies.html" class="card-link">Elegir dulces</a>
+            <button type="button" class="btn btn-sweetpop btn-sm mt-2" data-customize-box="box-simple">Personalizar esta caja</button>
           </div>
         </article>
       </div>
@@ -66,8 +67,9 @@
           <div class="card-body">
             <h3 class="card-title h5">Caja doble</h3>
             <p class="card-text">2 niveles anidados. 8 paredes en total.</p>
+            <p class="card-text">Precio base: $14.990</p>
             <p class="card-text">Descuento: 15%</p>
-            <a href="candies.html" class="card-link">Elegir dulces</a>
+            <button type="button" class="btn btn-sweetpop btn-sm mt-2" data-customize-box="box-double">Personalizar esta caja</button>
           </div>
         </article>
       </div>
@@ -77,8 +79,9 @@
           <div class="card-body">
             <h3 class="card-title h5">Caja triple</h3>
             <p class="card-text">3 niveles anidados. 12 paredes en total.</p>
+            <p class="card-text">Precio base: $21.990</p>
             <p class="card-text">Descuento: 20%</p>
-            <a href="candies.html" class="card-link">Elegir dulces</a>
+            <button type="button" class="btn btn-sweetpop btn-sm mt-2" data-customize-box="box-triple">Personalizar esta caja</button>
           </div>
         </article>
       </div>
@@ -108,5 +111,6 @@
   <script src="js/storage.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/box.js"></script>
 </body>
 </html>

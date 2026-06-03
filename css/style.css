@@ -255,6 +255,49 @@ main.container {
   border: 1px solid rgba(220, 53, 69, 0.45);
 }
 
+.box-draft-bar {
+  background: var(--sp-surface);
+  border: 1px solid var(--sp-surface-border);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  color: var(--sp-white);
+}
+
+.box-draft-progress {
+  height: 0.75rem;
+  background: var(--sp-surface-strong);
+}
+
+.box-draft-progress .progress-bar {
+  background: var(--sp-yellow);
+  color: var(--sp-text-dark);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.box-draft-list {
+  color: var(--sp-text-soft);
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.catalog-meta {
+  font-size: 0.9rem;
+  color: var(--sp-text-soft);
+}
+
+.catalog-status-ok {
+  color: #75d99a;
+}
+
+.catalog-status-blocked {
+  color: #ff8a96;
+}
+
+.catalog-status-info {
+  color: var(--sp-yellow);
+}
+
 @media (max-width: 991px) {
   .site-header .navbar-collapse {
     margin-top: 0.75rem;

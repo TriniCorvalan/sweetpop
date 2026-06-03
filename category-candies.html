@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="category">
   <header class="site-header">
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
       <div class="container">
@@ -34,39 +34,45 @@
       </ol>
     </nav>
 
+    <div id="catalogAlert"></div>
+    <div id="boxDraftBar"></div>
+
     <h1 class="h2 mb-4">Caramelos</h1>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
       <div class="col">
-        <article class="card h-100 sweetpop-card">
+        <article class="card h-100 sweetpop-card" data-product-id="car-lollipop">
           <img src="img/categorias/caramelos/dulce-lollipop.jpg" class="card-img-top" alt="Lollipop">
           <div class="card-body">
             <h3 class="card-title h5">Lollipop</h3>
             <p class="card-text">Clásicos caramelos en forma de paleta.</p>
             <p class="card-text">Tamaño medio. $1.990</p>
             <p class="card-text">Descuento: 5%</p>
+            <div class="catalog-product-actions mt-2"></div>
           </div>
         </article>
       </div>
       <div class="col">
-        <article class="card h-100 sweetpop-card">
+        <article class="card h-100 sweetpop-card" data-product-id="car-chew">
           <img src="img/categorias/caramelos/dulce-caramel.jpg" class="card-img-top" alt="Caramel Chew">
           <div class="card-body">
             <h3 class="card-title h5">Caramel Chew</h3>
             <p class="card-text">Deliciosos caramelos masticables.</p>
             <p class="card-text">Tamaño medio. $2.490</p>
             <p class="card-text">Descuento: no disponible</p>
+            <div class="catalog-product-actions mt-2"></div>
           </div>
         </article>
       </div>
       <div class="col">
-        <article class="card h-100 sweetpop-card">
+        <article class="card h-100 sweetpop-card" data-product-id="car-fruit-drop">
           <img src="img/categorias/caramelos/dulce-fruit-drop.jpg" class="card-img-top" alt="Fruit Drop">
           <div class="card-body">
             <h3 class="card-title h5">Fruit Drop</h3>
             <p class="card-text">Caramelos de fruta.</p>
             <p class="card-text">Tamaño grande. $4.490</p>
             <p class="card-text">Descuento: 10%</p>
+            <div class="catalog-product-actions mt-2"></div>
           </div>
         </article>
       </div>
@@ -92,5 +98,7 @@
   <script src="js/storage.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/nav.js"></script>
+  <script src="js/box.js"></script>
+  <script src="js/catalog.js"></script>
 </body>
 </html>
