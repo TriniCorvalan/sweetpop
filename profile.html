@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil - SweetPop</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top py-3">
+      <div class="container">
+        <a class="navbar-brand logo d-flex align-items-center gap-2" href="index.html">
+          <img src="img/logo.png" alt="Logo SweetPop" width="40" height="40" class="rounded">
+          SweetPop
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto" id="mainNavItems"></ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container py-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Mi perfil</li>
+      </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <section class="sweetpop-form-card p-4 p-md-5">
+          <h1 class="h2 mb-2">Mi perfil</h1>
+          <p class="mb-4">
+            Consulta tus datos personales y actualiza tu dirección de despacho.
+          </p>
+
+          <div role="alert" id="alertPerfil"></div>
+
+          <form id="formPerfil" novalidate>
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="fullName" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control sweetpop-field-readonly" id="fullName" name="fullName" readonly autocomplete="name">
+              </div>
+
+              <div class="col-md-6">
+                <label for="username" class="form-label">Nickname</label>
+                <input type="text" class="form-control sweetpop-field-readonly" id="username" name="username" readonly autocomplete="username">
+              </div>
+
+              <div class="col-md-6">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control sweetpop-field-readonly" id="email" name="email" readonly autocomplete="email">
+              </div>
+
+              <div class="col-md-6">
+                <label for="birthdate" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control sweetpop-field-readonly" id="birthdate" name="birthdate" readonly>
+              </div>
+
+              <div class="col-md-6">
+                <label for="signupDate" class="form-label">Fecha de registro</label>
+                <input type="text" class="form-control sweetpop-field-readonly" id="signupDate" name="signupDate" readonly tabindex="-1">
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Dirección de despacho</label>
+                <textarea class="form-control" id="address" name="address" rows="3" placeholder="Calle, número, comuna, región"></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              <button type="submit" class="btn btn-sweetpop">Guardar cambios</button>
+              <a href="index.html" class="btn btn-outline-light">Volver al inicio</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer py-4 mt-auto">
+    <div class="container text-center">
+      <p class="mb-2">SweetPop - Sorpresas dulces</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/validations.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>

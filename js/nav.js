@@ -53,6 +53,7 @@ function buildNavItems(session) {
   return [
     ...commonLinks,
     { label: cartLabel, href: "cart.html" },
+    { label: "Mi perfil", href: "profile.html" },
     { label: "Cerrar sesión", action: "logout" },
   ];
 }
